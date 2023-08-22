@@ -8,7 +8,7 @@ const fecthUser = async (req, res, next) => {
   }
   try {
     const data = jwt.verify(token, sign);
-    req.user = data.user;
+    res.user = data.user;
     next();
   } catch (error) {
     res.status(401).send({ error: "Access denied" });
