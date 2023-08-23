@@ -13,15 +13,14 @@ router.post(
 
   // Perfroming validation
   [
-    body("name").isLength({ min: 3 }),
-    body("email").trim().isEmail(),
-    body("password").isLength({ min: 5 }),
+    body("name", "Enter a valid name").isLength({ min: 3 }),
+    body("email", "Enter a valid email").trim().isEmail(),
+    body("password", "Enter a valid password").isLength({ min: 5 }),
   ],
   async (req, res) => {
-    //If there are errors then return errors
+    //If there are errors while performing any validation then return errors
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      // return res.send(`Hello, ${req.body.name}!`);
       return res.status(400).send({ errors: result.array() });
     }
 
@@ -34,10 +33,11 @@ router.post(
         });
       }
 
+      //Password Hasingh and aading salt
       const salt = await bcrypt.genSalt(10);
       const securePassword = await bcrypt.hash(req.body.password, salt);
 
-      //Inserting data into database
+      //Inserting valid user data into database
       user = await User.create({
         name: req.body.name,
         password: securePassword,
@@ -51,8 +51,9 @@ router.post(
           id: user.id,
         },
       };
-      const authToken = jwt.sign(data, sign);
+
       //Using JWTToken sign
+      const authToken = jwt.sign(data, sign);
       res.json({ authToken });
     } catch (error) {
       console.error(error.message);
@@ -66,12 +67,11 @@ router.post(
   "/login",
 
   // Perfroming validation
-  [body("email").isEmail(), body("password").exists()],
+  [body("email", "Enter a valid email").isEmail(), body("password").exists()],
   async (req, res) => {
-    //If there are errors then return errors
+    //If there are errors while performing any validation then return errors
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      // return res.send(`Hello, ${req.body.name}!`);
       return res.status(400).send({ errors: result.array() });
     }
 
@@ -79,7 +79,7 @@ router.post(
     const { email, password } = req.body;
 
     try {
-      //fetching user from database and verifying th user
+      //fetching user from database and verifying the valid user
       let user = await User.findOne({ email });
       if (!user) {
         return res
@@ -87,7 +87,7 @@ router.post(
           .json({ error: "Please enter valid login credentials" });
       }
 
-      //Comparing password which was entered by the user from the password which was stored in the database
+      //Comparing password which was entered by the user from the password which was already been stored in the database
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
         return res
@@ -114,12 +114,15 @@ router.post(
 //ROUTE 3: Get loggedin user details using POST method /api/auth/getuser   login required
 router.post("/getuser", fetchUser, async (res, req) => {
   try {
+    //fetching user id through "fetchUser" middleware
     userID = req.user.id;
+
+    //Just finding user through its id by diselecting password
     const user = await User.findById(userID).select("-password");
     req.send(user);
   } catch (error) {
     console.error(error.message);
-    // res.status(500).send("Some error occured");
+    res.status(500).send("Some error occured");
   }
 });
 
