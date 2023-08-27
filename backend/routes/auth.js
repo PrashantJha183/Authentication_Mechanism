@@ -33,7 +33,7 @@ router.post(
         });
       }
 
-      //Password Hasingh and aading salt
+      //Password Hasingh and adding salt
       const salt = await bcrypt.genSalt(10);
       const securePassword = await bcrypt.hash(req.body.password, salt);
 
