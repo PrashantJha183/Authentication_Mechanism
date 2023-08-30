@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import GoogleLoginButton from "./Components/GoogleLoginButton";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container">
+        <h1 className="text-center">Toasted Media</h1>
+        <GoogleOAuthProvider clientId="1055122908965-vne6enrsenkpfic0vm6j5lqumdfcs2hk.apps.googleusercontent.com">
+          <GoogleLoginButton />
+        </GoogleOAuthProvider>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
