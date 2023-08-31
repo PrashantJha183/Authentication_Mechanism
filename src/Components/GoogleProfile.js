@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GoogleLoginButton from "./GoogleLoginButton";
-const Profile = () => {
+// import GoogleLogoutButton from "./GoogleLogoutButton";
+const GoogleProfile = () => {
   const [userData, setUserData] = useState(null);
   const handleGoogleLogin = (res) => {
     setUserData(res.profileObj);
@@ -16,7 +17,9 @@ const Profile = () => {
       ) : (
         <GoogleLoginButton onLogin={handleGoogleLogin} />
       )}
+
+      {/* <GoogleLogoutButton /> */}
     </div>
   );
 };
-export default Profile;
+export default GoogleProfile;

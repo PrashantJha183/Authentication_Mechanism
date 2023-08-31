@@ -2,7 +2,7 @@ import React from "react";
 import { GoogleLogout } from "react-google-login";
 const clientId =
   "1055122908965-vne6enrsenkpfic0vm6j5lqumdfcs2hk.apps.googleusercontent.com";
-const googleLogout = () => {
+const GoogleLogoutButton = () => {
   const onSuccess = () => {
     alert("Logout made successfully");
   };
@@ -18,4 +18,4 @@ const googleLogout = () => {
     </>
   );
 };
-export default googleLogout;
+export default GoogleLogoutButton;

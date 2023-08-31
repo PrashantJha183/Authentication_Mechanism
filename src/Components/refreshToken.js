@@ -1,4 +1,4 @@
-export const refreshTokenSetUp = (res) => {
+const RefreshToken = (res) => {
   //Timing to renew access token
   let refreshingTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
 
@@ -17,3 +17,5 @@ export const refreshTokenSetUp = (res) => {
   //Setup first refresh timer
   setTimeout(refreshToken, refreshingTiming);
 };
+
+export default RefreshToken;

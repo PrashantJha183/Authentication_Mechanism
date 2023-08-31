@@ -1,15 +1,15 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-import { refreshTokenSetUp } from "./RefreshToken";
+import RefreshToken from "./RefreshToken";
 const clientId =
   "1055122908965-vne6enrsenkpfic0vm6j5lqumdfcs2hk.apps.googleusercontent.com";
 
-const googleLogin = () => {
+const GoogleLoginButton = () => {
   const onSuccess = (res) => {
     console.log("Login Successful: ", res.profileobj);
 
     //Intializing the setup
-    refreshTokenSetUp(res);
+    RefreshToken(res);
   };
   const OnFailure = (res) => {
     console.log("Login failed", res);
@@ -32,4 +32,4 @@ const googleLogin = () => {
     />
   );
 };
-export default googleLogin;
+export default GoogleLoginButton;
