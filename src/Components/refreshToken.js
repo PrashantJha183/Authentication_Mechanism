@@ -4,8 +4,8 @@ export const refreshTokenSetUp = (res) => {
 
   const refreshToken = async () => {
     const newAuthRes = await res.reloadAuthResponse();
-    refreshingTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
-    console.log("newAuthRes:", newAuthRes);
+    const refreshingTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
+    console.log("newAuthRes: ", newAuthRes);
 
     //saveUserToken(newAuthRes.access_token);    <--- save new token
     console.log("new Auth Token: ", newAuthRes.id_token);
