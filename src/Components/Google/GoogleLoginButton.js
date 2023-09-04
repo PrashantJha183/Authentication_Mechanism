@@ -36,13 +36,15 @@
 
 import React from "react";
 import GoogleLogin from "react-google-login";
+import RefreshToken from "./RefreshToken";
 
 const GoogleLoginButton = ({ onLogin }) => {
   const clientId =
     "1055122908965-vne6enrsenkpfic0vm6j5lqumdfcs2hk.apps.googleusercontent.com";
 
-  const handleSuccess = (response) => {
-    onLogin(response); // Pass the response to the parent component
+  const handleSuccess = (res) => {
+    onLogin(res); // Pass the response to the parent component
+    RefreshToken(res);
   };
 
   const handleFailure = (error) => {
@@ -52,7 +54,7 @@ const GoogleLoginButton = ({ onLogin }) => {
   return (
     <GoogleLogin
       clientId={clientId}
-      buttonText="Login with Google"
+      buttonText="Continue with Google"
       onSuccess={handleSuccess}
       onFailure={handleFailure}
       cookiePolicy={"single_host_origin"}
