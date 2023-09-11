@@ -14,23 +14,23 @@ router.post(
   // Perfroming validation
   [
     body("name", "Enter a valid name").isLength({ min: 3 }),
-    body("email", "Enter a valid email").trim().isEmail(),
+    body("email", "Enter a valid email").isEmail(),
     body("password", "Enter a valid password").isLength({ min: 5 }),
   ],
   async (req, res) => {
+    let success = false;
     //If there are errors while performing any validation then return errors
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      return res.status(400).send({ errors: result.array() });
+      return res.status(400).send({ success, errors: result.array() });
     }
 
     //Validating user through email by fetching email from database and verifying that user exist or not
     try {
       let user = await User.findOne({ email: req.body.email });
+      let success = false;
       if (user) {
-        res.json({
-          error: "User with this email already exist",
-        });
+        res.json({ success, error: "User with this email already exist" });
       }
 
       //Password Hasingh and adding salt
@@ -53,8 +53,9 @@ router.post(
       };
 
       //Using JWTToken sign
+      success = true;
       const authToken = jwt.sign(data, sign);
-      res.json({ authToken });
+      res.json({ success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Some error occured");
@@ -69,6 +70,7 @@ router.post(
   // Perfroming validation
   [body("email", "Enter a valid email").isEmail(), body("password").exists()],
   async (req, res) => {
+    let success = false;
     //If there are errors while performing any validation then return errors
     const result = validationResult(req);
     if (!result.isEmpty()) {
@@ -82,17 +84,19 @@ router.post(
       //fetching user from database and verifying the valid user
       let user = await User.findOne({ email });
       if (!user) {
+        success = false;
         return res
           .status(400)
-          .json({ error: "Please enter valid login credentials" });
+          .json({ success, error: "Please enter valid login credentials" });
       }
 
       //Comparing password which was entered by the user from the password which was already been stored in the database
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
+        success = false;
         return res
           .status(400)
-          .json({ error: "Please enter valid login credentials" });
+          .json({ success, error: "Please enter valid login credentials" });
       }
 
       //sending payload for jwtToken
@@ -102,8 +106,9 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, sign);
+      success = true;
       //Using JWTToken sign
-      res.json({ authToken });
+      res.json({ success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Some error occured");

@@ -59,16 +59,13 @@
 // export default App;
 
 import React, { useEffect } from "react";
-// import Header from "./Components/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Footer from "./Components/Footer";
-// import Main from "./Components/Landing";
-// import Login from "./Components/Login";
-// import First from "./Components/First";
-
 import ToastedMedia from "./Components/Script";
 import NoteState from "./Components/Context/NoteState";
-import Blog from "./Components/Blog";
+import Blog from "./Components/CreateBlog";
+import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
+// import Footer from "./Components/Others/Footer";
 
 const App = () => {
   useEffect(() => {
@@ -79,12 +76,21 @@ const App = () => {
       <NoteState>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<ToastedMedia />}></Route>
+            <Route exact path="/" element={<ToastedMedia />}></Route>
           </Routes>
 
           <Routes>
-            <Route path="/Blog" element={<Blog />}></Route>
+            <Route exact path="/blog" element={<Blog />}></Route>
           </Routes>
+
+          <Routes>
+            <Route exact path="/login" element={<Login />}></Route>
+          </Routes>
+
+          <Routes>
+            <Route exact path="/signup" element={<SignUp />}></Route>
+          </Routes>
+          {/* <Footer /> */}
         </BrowserRouter>
       </NoteState>
     </>

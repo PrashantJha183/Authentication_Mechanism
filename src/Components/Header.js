@@ -18,28 +18,28 @@ export default function Header() {
     function handleScroll() {
       setScrollVar();
     }
-    //eslint-disable-next-line
+
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
 
     setScrollVar();
-    //eslint-disable-next-line
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
   }, []);
 
-  function handleElementVisibility(id, action) {
-    const element = document.getElementById(id);
-    if (element) {
-      if (action === "show") {
-        element.classList.remove("hidden");
-      } else if (action === "hide") {
-        element.classList.add("hidden");
-      }
-    }
-  }
+  // function handleElementVisibility(id, action) {
+  //   const element = document.getElementById(id);
+  //   if (element) {
+  //     if (action === "show") {
+  //       element.classList.remove("hidden");
+  //     } else if (action === "hide") {
+  //       element.classList.add("hidden");
+  //     }
+  //   }
+  // }
   return (
     <>
       <header>
@@ -90,7 +90,7 @@ export default function Header() {
                   : "optionlight"
               }`}
               id="option3"
-              to="/Blog"
+              to="/blog"
             >
               Blog
             </Link>
@@ -116,7 +116,7 @@ export default function Header() {
                   : "optionlight"
               }`}
               id="option5"
-              to="/"
+              to="/signup"
             >
               About
             </Link>
@@ -129,7 +129,7 @@ export default function Header() {
                   : "optionlight"
               }`}
               id="option6"
-              to="/"
+              to="/login"
             >
               Login
             </Link>

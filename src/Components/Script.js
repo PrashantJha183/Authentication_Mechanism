@@ -1,170 +1,12 @@
-// // //
-// // import React, { useState, useEffect } from "react";
-// // import First from "./First";
-
-// // function MyScrollComponent() {
-// //   const [scrollPercent, setScrollPercent] = useState(0);
-
-// //   useEffect(() => {
-// //     function setScrollVar() {
-// //       const htmlElement = document.documentElement;
-// //       const percentOfScreenHeightScrolled =
-// //         (htmlElement.scrollTop / htmlElement.clientHeight) * 100;
-// //       setScrollPercent(Math.min(percentOfScreenHeightScrolled));
-
-// //       // Add your logic to update classes and styles based on scrollPercent here
-// //       // You can use state to manage class names and inline styles.
-// //     }
-
-// //     function handleScroll() {
-// //       setScrollVar();
-// //     }
-
-// //     // Add scroll and resize event listeners
-// //     window.addEventListener("scroll", handleScroll);
-// //     window.addEventListener("resize", handleScroll);
-
-// //     // Initialize scroll position
-// //     setScrollVar();
-
-// //     // Cleanup event listeners on component unmount
-// //     return () => {
-// //       window.removeEventListener("scroll", handleScroll);
-// //       window.removeEventListener("resize", handleScroll);
-// //     };
-// //   }, []); // Empty dependency array means this effect runs only once on mount
-
-// //   // JSX structure for your component
-// //   return (
-// //     <div>
-// //       {/* Add your HTML structure and elements here */}
-// //       <div id="main-text" className="hidden">
-// //         <First />
-// //       </div>
-// //       {/* Other elements */}
-// //     </div>
-// //   );
-// // }
-
-// // export default MyScrollComponent;
-
-// import React, { useState, useEffect } from "react";
-// // import First from "./First";
-
-// function MyScrollComponent() {
-//   const [scrollPercent, setScrollPercent] = useState(0);
-
-//   useEffect(() => {
-//     function setScrollVar() {
-//       const htmlElement = document.documentElement;
-//       const percentOfScreenHeightScrolled =
-//         (htmlElement.scrollTop / htmlElement.clientHeight) * 100;
-//       setScrollPercent(Math.min(percentOfScreenHeightScrolled));
-
-//       // Add your logic to update classes and styles based on scrollPercent here
-//       // You can use state to manage class names and inline styles.
-//     }
-
-//     function handleScroll() {
-//       setScrollVar();
-//     }
-
-//     // Add scroll and resize event listeners
-//     window.addEventListener("scroll", handleScroll);
-//     window.addEventListener("resize", handleScroll);
-
-//     // Initialize scroll position
-//     setScrollVar();
-
-//     // Cleanup event listeners on component unmount
-//     return () => {
-//       window.removeEventListener("scroll", handleScroll);
-//       window.removeEventListener("resize", handleScroll);
-//     };
-//   }, []); // Empty dependency array means this effect runs only once on mount
-
-//   // JSX structure for your component
-//   return (
-//     <>
-//       <div>
-//         {/* Add your HTML structure and elements here */}
-//         <div id="main-text" className={scrollPercent > 50 ? "" : "hidden"}>
-//           {/* <Header
-//             name="Toasted Media"
-//             option_1="SERVICES"
-//             option_2="PORTFOLIO"
-//             option_3="BLOG"
-//             option_4="CONTACT"
-//             option_5="ABOUT"
-//             option_6="LOGIN"
-//           /> */}
-//           {/* <First /> */}
-//           Toasted Media
-//           <img scr="Toasted_Media.png" alt="noImage" />
-//         </div>
-//         <div
-//           id="logo"
-//           className={
-//             scrollPercent > 95 && scrollPercent < 195 ? "logodark" : "logolight"
-//           }
-//         ></div>
-//         <div
-//           id="option1"
-//           className={
-//             scrollPercent > 95 && scrollPercent < 195
-//               ? "optiondark"
-//               : "optionlight"
-//           }
-//         >
-//           Option 1
-//         </div>
-//         <div
-//           id="option2"
-//           className={
-//             scrollPercent > 95 && scrollPercent < 195
-//               ? "optiondark"
-//               : "optionlight"
-//           }
-//         >
-//           Option 2
-//         </div>
-//         {/* Add more elements and conditions as needed */}
-//         <div id="new-toast" className={scrollPercent < 210 ? "out" : "in"}>
-//           New Toast
-//         </div>
-//         {/* Add your other HTML elements here */}
-//       </div>
-//     </>
-//   );
-// }
-
-// export default MyScrollComponent;
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
-// import Carousel from "react-multi-carousel";
-import ImageSlider from "./ImageSlider";
+// import ImageSlider from "./ImageSlider";
+
+import Notes from "./BlogShow";
 
 function ToastedMedia() {
   const [scrollPercent, setScrollPercent] = useState(0);
-  // const Image = () => {
-  //   // <img src="Toaster.png" alt="nahi h" />;
-  //   document.title = "You are amazing";
-  // };
-
-  // const image = ()=>{}
-  // var count = 0;
-  // setInterval(() => {
-  //   document.title = "Boobies";
-  // }, 10000);
-
-  // setInterval(() => {
-  //   count = count + 1;
-  //   console.log(count);
-  // }, 20000);
-  // setInterval(() => {
-  //   document.title = "Yes boss haa nahi";
-  // }, 30000);
 
   useEffect(() => {
     function setScrollVar() {
@@ -177,12 +19,12 @@ function ToastedMedia() {
     function handleScroll() {
       setScrollVar();
     }
-    //eslint-disable-next-line
+
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
 
     setScrollVar();
-    //eslint-disable-next-line
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
@@ -203,44 +45,6 @@ function ToastedMedia() {
   return (
     <>
       <Header />
-      {/* <header>
-        <Link className="logolight" id="logo" to="/">
-          <img className="logoimg" src="logo.png" alt="logo" />
-          Toasted Media
-        </Link>
-        <ul>
-          <li>
-            <Link className="optionlight" id="option1" to="/">
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link className="optionlight" id="option2" to="/">
-              Portfolio
-            </Link>
-          </li>
-          <li>
-            <Link className="optionlight" id="option3" to="/Blog">
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link className="optionlight" id="option4" to="/">
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link className="optionlight" id="option5" to="/">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link className="optionlight" id="option6" to="/">
-              Login
-            </Link>
-          </li>
-        </ul>
-      </header> */}
 
       <div className="Landing-1">
         <div className="text-content">
@@ -277,7 +81,6 @@ function ToastedMedia() {
       </div>
 
       <div className="sec">
-        {/* <img className="toastmax" src="Toast.png" alt="no image" /> */}
         <div
           className={`main-text ${scrollPercent > 5000 ? "" : "hidden1"}`}
           id="main-text"
@@ -364,10 +167,13 @@ function ToastedMedia() {
 
       <div className="four"></div>
 
-      <div className="scroll my-5">
+      {/* <div className="scroll my-5">
         <div className="slider">
           <ImageSlider />
         </div>
+      </div> */}
+      <div className="container">
+        <Notes />
       </div>
     </>
   );

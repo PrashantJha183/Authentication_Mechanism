@@ -1,0 +1,22 @@
+{
+  "type": "Compass Connections",
+  "version": {
+    "$numberInt": "1"
+  },
+  "connections": [
+    {
+      "id": "719b2e2c-1349-429e-b743-d992be9089cd",
+      "connectionOptions": {
+        "connectionString": "mongodb://localhost:27017/"
+      },
+      "favorite": {
+        "name": "MyDatabse"
+      },
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1675323213013"
+        }
+      }
+    }
+  ]
+}

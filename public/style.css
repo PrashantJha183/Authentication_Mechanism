@@ -192,9 +192,6 @@ header ul li .optiondark {
   letter-spacing: 1px;
   border: 3px solid #333;
   transition: all 0.35s;
-  --val1: min(var(--scroll), 100) * 100 / 200;
-  transform: translateX(calc(0% - 5% * var(--val1)));
-  opacity: calc(100% - 5% * var(--val1));
 }
 
 .icon {
