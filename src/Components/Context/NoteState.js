@@ -13,7 +13,7 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRlMzUzZmI3ZTBjMzNiMzUxOWNkZmIzIn0sImlhdCI6MTY5Mjc3OTQ1OX0.8EyfjcuNce-emCQgWB7pMpYrnQq3IK5qwQg5tscUxxo",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMDIzNTYxMzIyMTRmNjdjODJlMTc1In0sImlhdCI6MTY5NDU0ODYzNX0.f2vkZ4inVvMm3Xt-xvHq4z40owxEecbeZP6xNrgDqS4",
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -43,23 +43,27 @@ const NoteState = (props) => {
   // };
 
   //for fetching blog
-  const getNotes = async () => {
-    const response = await fetch(`${host}/api/notes/fetchallnotes`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRlMzUzZmI3ZTBjMzNiMzUxOWNkZmIzIn0sImlhdCI6MTY5Mjc3OTQ1OX0.8EyfjcuNce-emCQgWB7pMpYrnQq3IK5qwQg5tscUxxo",
-      },
-    });
-    const json = await response.json();
-    console.log(json);
-    setNotes(json);
-  };
+  // const fetchBlogs = async () => {
+  //   const response = await fetch(`${host}/api/auth/getAllID`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       // "auth-token":
+  //       //   "0",
+  //     },
+  //   });
+
+  //   // console.log(response);
+  //   const data = await response.json();
+  //   // console.log(data);
+  //   setNotes(data);
+  // };
+  // console.log(fetchBlogs());
 
   return (
     <>
-      <NoteContext.Provider value={{ notes, getNotes, addNotes }}>
+      {/* console.log(getNotes()) */}
+      <NoteContext.Provider value={{ notes, addNotes }}>
         {props.children}
       </NoteContext.Provider>
     </>

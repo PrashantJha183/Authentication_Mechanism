@@ -9,6 +9,8 @@ router.get("/fetchallnotes", fetchUser, async (req, res) => {
   try {
     //fetching user id through "fetchUser" middleware
     const notes = await Notes.find({ user: res.user.id });
+
+    console.log(notes);
     res.json(notes);
   } catch (error) {
     console.error(error.message);
@@ -140,4 +142,5 @@ router.delete("/deletenotes/:id", fetchUser, async (req, res) => {
     res.status(500).send("Some error occured");
   }
 });
+
 module.exports = router;

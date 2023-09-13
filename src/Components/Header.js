@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
   window.onbeforeunload = function () {
     window.scrollTo(-100, -100);
   };
@@ -23,23 +24,17 @@ export default function Header() {
     window.addEventListener("resize", handleScroll);
 
     setScrollVar();
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
   }, []);
 
-  // function handleElementVisibility(id, action) {
-  //   const element = document.getElementById(id);
-  //   if (element) {
-  //     if (action === "show") {
-  //       element.classList.remove("hidden");
-  //     } else if (action === "hide") {
-  //       element.classList.add("hidden");
-  //     }
-  //   }
-  // }
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <>
       <header>
@@ -47,7 +42,9 @@ export default function Header() {
           className={`${
             scrollPercent > 9000 && scrollPercent < 19000
               ? "logodark"
-              : "logolight"
+              : scrollPercent < 31000
+              ? "logolight"
+              : "logodark"
           }`}
           id="logo"
           to="/"
@@ -61,7 +58,9 @@ export default function Header() {
               className={`${
                 scrollPercent > 9000 && scrollPercent < 19000
                   ? "optiondark"
-                  : "optionlight"
+                  : scrollPercent < 31000
+                  ? "optionlight"
+                  : "optiondark"
               }`}
               id="option1"
               to="/"
@@ -74,10 +73,12 @@ export default function Header() {
               className={`${
                 scrollPercent > 9000 && scrollPercent < 19000
                   ? "optiondark"
-                  : "optionlight"
+                  : scrollPercent < 31000
+                  ? "optionlight"
+                  : "optiondark"
               }`}
               id="option2"
-              to="/"
+              to="/portfolio"
             >
               Portfolio
             </Link>
@@ -87,7 +88,9 @@ export default function Header() {
               className={`${
                 scrollPercent > 9000 && scrollPercent < 19000
                   ? "optiondark"
-                  : "optionlight"
+                  : scrollPercent < 31000
+                  ? "optionlight"
+                  : "optiondark"
               }`}
               id="option3"
               to="/blog"
@@ -100,10 +103,12 @@ export default function Header() {
               className={`${
                 scrollPercent > 9000 && scrollPercent < 19000
                   ? "optiondark"
-                  : "optionlight"
+                  : scrollPercent < 31000
+                  ? "optionlight"
+                  : "optiondark"
               }`}
               id="option4"
-              to="/"
+              to="/contact"
             >
               Contact
             </Link>
@@ -113,26 +118,40 @@ export default function Header() {
               className={`${
                 scrollPercent > 9000 && scrollPercent < 19000
                   ? "optiondark"
-                  : "optionlight"
+                  : scrollPercent < 31000
+                  ? "optionlight"
+                  : "optiondark"
               }`}
               id="option5"
-              to="/signup"
+              to="/about"
             >
               About
             </Link>
           </li>
           <li>
-            <Link
-              className={`${
-                scrollPercent > 9000 && scrollPercent < 19000
-                  ? "optiondark"
-                  : "optionlight"
-              }`}
-              id="option6"
-              to="/login"
-            >
-              Login
-            </Link>
+            {!localStorage.getItem("token") ? (
+              <Link
+                className={`${
+                  scrollPercent > 9000 && scrollPercent < 19000
+                    ? "optiondark"
+                    : scrollPercent < 31000
+                    ? "optionlight"
+                    : "optiondark"
+                }`}
+                id="option6"
+                to="/login"
+              >
+                Login
+              </Link>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={logout}
+              >
+                Logout
+              </button>
+            )}
           </li>
         </ul>
       </header>

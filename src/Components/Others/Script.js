@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
+
 import ImageSlider from "./ImageSlider";
 import Footer from "./Others/Footer";
-import Notes from "./BlogShow";
+// import Notes from "./BlogShow";
 
 function ToastedMedia() {
   const [scrollPercent, setScrollPercent] = useState(0);
@@ -19,12 +21,12 @@ function ToastedMedia() {
     function handleScroll() {
       setScrollVar();
     }
-
+    //eslint-disable-next-line
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
 
     setScrollVar();
-
+    //eslint-disable-next-line
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
@@ -45,28 +47,17 @@ function ToastedMedia() {
   return (
     <>
       <Header />
-      <img
-        className={`toastmax ${
-          scrollPercent > 5000 && scrollPercent < 14999
-            ? "page-2"
-            : scrollPercent > 15000 && scrollPercent < 30999
-            ? "page-3"
-            : scrollPercent > 31000
-            ? "page-4"
-            : "page-1"
-        }`}
-        src="Toast.png"
-        alt="no image"
-      />
+
+      <img className={`toastmax ${scrollPercent > 5000 && scrollPercent < 14999 ? "page-2" : scrollPercent > 15000 && scrollPercent < 30999 ? "page-3" : scrollPercent > 31000 ? "page-4" : "page-1"
+        }`} src="Toast.png" alt="no image" />
       <div className="Landing-1">
         <div className="text-content">
           <h1 className={`name ${scrollPercent > 3900 ? "nameout" : "namein"}`}>
             Toasted Media
           </h1>
           <h1
-            className={`profiles ${
-              scrollPercent > 3900 ? "nameout" : "namein"
-            }`}
+            className={`profiles ${scrollPercent > 3900 ? "nameout" : "namein"
+              }`}
           >
             Creatives
           </h1>
@@ -77,9 +68,8 @@ function ToastedMedia() {
           </h2>
           <div className="wrapper">
             <div
-              className={`link_wrapper ${
-                scrollPercent > 2800 ? "nameout" : "namein"
-              }`}
+              className={`link_wrapper ${scrollPercent > 2800 ? "nameout" : "namein"
+                }`}
             >
               <Link to="/contact">Contact Us!</Link>
               <div className="icon">
@@ -91,6 +81,7 @@ function ToastedMedia() {
           </div>
         </div>
       </div>
+
       <div className="sec">
         {console.log(scrollPercent)}
         <div
@@ -165,28 +156,18 @@ function ToastedMedia() {
           />
         </div>
       </div>
+
       <div className="thir">
         <div className="slider-1">
           <ImageSlider />
         </div>
       </div>
-      {console.log(scrollPercent)}
 
       <div className="four">
-        <div
-          className={`hr1 ${
-            scrollPercent > 25000
-              ? scrollPercent < 48000
-                ? "hr-in"
-                : "opa-1"
-              : "opa-1"
-          }`}
-        ></div>
+        <div className={`hr1 ${scrollPercent > 25000 ? scrollPercent < 52000 ? "hr-in" : "opa-1" : "opa-1"}`} ></div>
       </div>
 
-      <div className="container">
-        <Notes />
-      </div>
+
 
       <Footer />
     </>

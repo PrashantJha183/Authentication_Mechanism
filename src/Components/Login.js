@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Header from "./Header";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+function Login(props) {
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
   let navigate = useNavigate();
   const submit = async (e) => {
     e.preventDefault();
@@ -13,16 +16,18 @@ function Login() {
       body: JSON.stringify({
         email: credentials.email,
         password: credentials.password,
+        role: credentials.role,
       }),
     });
 
-    const json = response.json();
-
     setCredentials({ email: "", password: "" });
-    console.log(json);
 
-    if (json.success) {
-      localStorage.setItem("token", json.authToken);
+    const data = await response.json();
+
+    if (response.status === 200) {
+      localStorage.setItem("token", data.authToken);
+      localStorage.setItem("roles", data.role);
+
       navigate("/");
     } else {
       alert("Invalid credentials");
@@ -36,7 +41,7 @@ function Login() {
     <>
       <Header />
       <div className="container">
-        <form onSubmit={submit}>
+        <form>
           <div className="form-group" style={{ marginTop: "10%" }}>
             <label htmlFor="exampleInputEmail1" className="mx-1">
               Email address
@@ -72,10 +77,18 @@ function Login() {
             className="btn btn-primary my-2"
             style={{ display: "block", margin: "auto" }}
             onChange={onChange}
+            onClick={submit}
           >
             Login
           </button>
         </form>
+
+        <div
+          className="container text-center"
+          style={{ textDecoration: "none" }}
+        >
+          <Link to="/signup">Don't have an account? </Link>
+        </div>
       </div>
     </>
   );

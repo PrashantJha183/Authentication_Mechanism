@@ -10,18 +10,27 @@ function ImageSlider() {
           <img src="Toast.png" alt="Image 2" className="slider-image" />
           <br />
           <img src="Toast.png" alt="Image 2" className="slider-image" />
+          <br />
           <img src="Toast.png" alt="Image 2" className="slider-image" />
-          <br /> <img src="Toast.png" alt="Image 2" className="slider-image" />
-          <br /> <img src="Toast.png" alt="Image 2" className="slider-image" />
-          <br /> <img src="Toast.png" alt="Image 2" className="slider-image" />
-          <br /> <img src="Toast.png" alt="Image 2" className="slider-image" />
-          <br /> <img src="Toast.png" alt="Image 2" className="slider-image" />
+          <br />
+          <img src="Toast.png" alt="Image 2" className="slider-image" />
+          <br />
+          <img src="Toast.png" alt="Image 2" className="slider-image" />
+          <br />
+          <img src="Toast.png" alt="Image 2" className="slider-image" />
+          <br />
+          <img src="Toast.png" alt="Image 2" className="slider-image" />
+          <br />
+          <img src="Toast.png" alt="Image 2" className="slider-image" />
+          <br />
           <img src="Toaster.png" alt="Image 1" className="slider-image" />
           <br />
-          <br /> <img src="Toast.png" alt="Image 2" className="slider-image" />
-          <br /> <img src="Toast.png" alt="Image 2" className="slider-image" />
-          <img src="Toaster.png" alt="Image 1" className="slider-image" />
           <br />
+          <img src="Toast.png" alt="Image 2" className="slider-image" />
+          <br />
+          <img src="Toast.png" alt="Image 2" className="slider-image" />
+          <br />
+          <img src="Toaster.png" alt="Image 1" className="slider-image" />
           <br />
         </div>
       </div>

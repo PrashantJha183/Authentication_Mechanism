@@ -65,32 +65,48 @@ import NoteState from "./Components/Context/NoteState";
 import Blog from "./Components/CreateBlog";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
-// import Footer from "./Components/Others/Footer";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import Portfolio from "./Components/Portfolio";
 
 const App = () => {
   useEffect(() => {
     window.history.scrollRestoration = "manual";
   }, []);
+
   return (
     <>
       <NoteState>
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<ToastedMedia />}></Route>
+            <Route path="/" element={<ToastedMedia />}></Route>
           </Routes>
 
           <Routes>
-            <Route exact path="/blog" element={<Blog />}></Route>
+            <Route path="/blog" element={<Blog />}></Route>
           </Routes>
 
           <Routes>
-            <Route exact path="/login" element={<Login />}></Route>
+            <Route path="/login" element={<Login />}></Route>
           </Routes>
 
           <Routes>
-            <Route exact path="/signup" element={<SignUp />}></Route>
+            <Route path="/about" element={<About />}></Route>
           </Routes>
-          {/* <Footer /> */}
+
+          <Routes>
+            <Route path="/contact" element={<Contact />}>
+              Contact
+            </Route>
+          </Routes>
+
+          <Routes>
+            <Route path="/portfolio" element={<Portfolio />}></Route>
+          </Routes>
+
+          <Routes>
+            <Route path="/signup" element={<SignUp />}></Route>
+          </Routes>
         </BrowserRouter>
       </NoteState>
     </>

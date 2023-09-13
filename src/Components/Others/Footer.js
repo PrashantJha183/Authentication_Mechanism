@@ -2,18 +2,8 @@ import React from "react";
 export default function Footer() {
   return (
     <>
-      <div className="fixed-bottom">
-        <div
-          className="empty fixed-bottom"
-          style={{
-            height: "5vh",
-            backgroundColor: "brown",
-            position: "-webkit-sticky",
-
-            //eslint-disable-next-line
-            position: "sticky",
-          }}
-        ></div>
+      <div>
+       
         <div
           className="d-flex justify-content-evenly align-items-center"
           style={{

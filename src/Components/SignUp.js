@@ -3,7 +3,7 @@ import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -23,13 +23,9 @@ function SignUp() {
       }),
     });
 
-    const json = response.json();
-
-    // setCredentials({ name: "", email: "", password: "", cpassword: "" });
-    console.log(json);
-
-    if (json.success) {
-      localStorage.setItem("token", json.authToken);
+    if (response.status === 200) {
+      const data = await response.json();
+      localStorage.setItem("token", data.authToken);
       navigate("/login");
     } else {
       alert("Invalid credentials");
@@ -39,11 +35,13 @@ function SignUp() {
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
   return (
     <>
       <Header />
+
       <div className="container">
-        <form onSubmit={signUp}>
+        <form>
           <div className="form-group" style={{ marginTop: "10%" }}>
             <label htmlFor="exampleInputEmail1" className="mx-1">
               Name
@@ -109,9 +107,10 @@ function SignUp() {
           </div>
 
           <button
-            type="submit"
+            type="button"
             className="btn btn-primary my-2"
             style={{ display: "block", margin: "auto" }}
+            onClick={signUp}
           >
             Signup
           </button>

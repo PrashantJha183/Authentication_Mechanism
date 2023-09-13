@@ -4,11 +4,11 @@ import NoteContext from "./Context/NoteContext";
 
 export default function Blog() {
   const context = useContext(NoteContext);
-  // const { notes, setNotes } = context;
 
   const { addNotes } = context;
 
   const [notes, setNotes] = useState({
+    user: "",
     title: "",
     description: "",
     tag: "",
