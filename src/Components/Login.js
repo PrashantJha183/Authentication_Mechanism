@@ -87,7 +87,7 @@ function Login(props) {
           className="container text-center"
           style={{ textDecoration: "none" }}
         >
-          <Link to="/signup">Don't have an account? </Link>
+          {/* <Link to="/signup">Don't have an account? </Link> */}
         </div>
       </div>
     </>

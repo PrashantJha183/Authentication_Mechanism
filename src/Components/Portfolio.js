@@ -16,7 +16,15 @@ export default function Portfolio() {
           </ul>
         </div>
         <div className="sec-2">
-          <div className="scrollable"></div>
+          <div className="scrollable">
+          <embed
+    src="wedding.pdf"
+    type="application/pdf"
+    frameBorder="0"
+    scrolling="no"
+    className="pdf"
+    ></embed>
+          </div>
         </div>
         <div className="sec-3">
           <ul>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import ImageSlider from "./ImageSlider";
 import Footer from "./Others/Footer";
-import Notes from "./BlogShow";
+// import Notes from "./BlogShow";
 
 function ToastedMedia() {
   const [scrollPercent, setScrollPercent] = useState(0);
@@ -41,7 +41,40 @@ function ToastedMedia() {
       }
     }
   }
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+  let navigate = useNavigate();
+  const submit = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+        role: credentials.role,
+      }),
+    });
 
+    setCredentials({ email: "", password: "" });
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+      localStorage.setItem("token", data.authToken);
+      localStorage.setItem("roles", data.role);
+
+      navigate("/");
+    } else {
+      alert("Invalid credentials");
+    }
+  };
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
   return (
     <>
       <Header />
@@ -49,10 +82,12 @@ function ToastedMedia() {
         className={`toastmax ${
           scrollPercent > 5000 && scrollPercent < 14999
             ? "page-2"
-            : scrollPercent > 15000 && scrollPercent < 30999
+            : scrollPercent > 15000 && scrollPercent < 29000
             ? "page-3"
-            : scrollPercent > 31000
+            : scrollPercent > 29000 && scrollPercent < 30800
             ? "page-4"
+            : scrollPercent > 30800
+            ? "hidden"
             : "page-1"
         }`}
         src="Toast.png"
@@ -166,13 +201,41 @@ function ToastedMedia() {
         </div>
       </div>
       <div className="thir">
-        <div className="slider-1">
-          <ImageSlider />
-        </div>
+        <div className="slider-1">{/* <ImageSlider /> */}</div>
       </div>
       {console.log(scrollPercent)}
+      <div className={`input ${!localStorage.getItem("token") ? "" : "non"}`}>
+        <form>
+          <input
+            type="email"
+            className={`input-mail ${
+              scrollPercent > 30000 ? "login" : "hidden"
+            }`}
+            placeholder="Enter email"
+            value={credentials.email}
+            name="email"
+            onChange={onChange}
+          />
+          <input
+            type="password"
+            className={`input-pass ${
+              scrollPercent > 30000 ? "login" : "hidden"
+            }`}
+            placeholder="Enter Password"
+            value={credentials.password}
+            name="password"
+            onChange={onChange}
+          />
+          <img
+            src="Toaster.png"
+            className={`image-login ${
+              scrollPercent > 30000 ? "login" : "hidden"
+            }`}
+            onChange={onChange}
+            onClick={submit}
+          />
+        </form>
 
-      <div className="four">
         <div
           className={`hr1 ${
             scrollPercent > 25000
@@ -182,11 +245,21 @@ function ToastedMedia() {
               : "opa-1"
           }`}
         ></div>
+        <Link to="/signup" className={`signup ${
+              scrollPercent > 30000 ? "login" : "hidden"
+            }`}>
+          Don't have an account?{" "}
+        </Link>
+        <img
+          src="Toast.png"
+          className={`img-toast ${scrollPercent > 30800 ? "" : "hidden"}`}
+          alt=""
+        />
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <Notes />
-      </div>
+      </div> */}
 
       <Footer />
     </>

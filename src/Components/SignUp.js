@@ -26,7 +26,7 @@ function SignUp() {
     if (response.status === 200) {
       const data = await response.json();
       localStorage.setItem("token", data.authToken);
-      navigate("/login");
+      navigate("/");
     } else {
       alert("Invalid credentials");
     }

@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Routes,
+  useNavigate,
+  Route,
+} from "react-router-dom";
+import Login from "./Login";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -32,7 +39,7 @@ export default function Header() {
 
   const logout = () => {
     localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -139,7 +146,7 @@ export default function Header() {
                     : "optiondark"
                 }`}
                 id="option6"
-                to="/login"
+                to="/"
               >
                 Login
               </Link>

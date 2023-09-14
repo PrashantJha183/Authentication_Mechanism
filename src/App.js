@@ -82,13 +82,13 @@ const App = () => {
             <Route path="/" element={<ToastedMedia />}></Route>
           </Routes>
 
-          <Routes>
+          {/* <Routes>
             <Route path="/blog" element={<Blog />}></Route>
-          </Routes>
+          </Routes> */}
 
-          <Routes>
+          {/* <Routes>
             <Route path="/login" element={<Login />}></Route>
-          </Routes>
+          </Routes> */}
 
           <Routes>
             <Route path="/about" element={<About />}></Route>

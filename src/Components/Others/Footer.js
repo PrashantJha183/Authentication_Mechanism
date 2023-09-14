@@ -3,7 +3,6 @@ export default function Footer() {
   return (
     <>
       <div>
-       
         <div
           className="d-flex justify-content-evenly align-items-center"
           style={{
@@ -41,7 +40,7 @@ export default function Footer() {
             <img
               src="Toaster.png"
               alt="noImage"
-              style={{ height: "150px", width: "200px" }}
+              style={{ height: "120px", width: "200px", marginTop: "50px" }}
             />
           </div>
         </div>

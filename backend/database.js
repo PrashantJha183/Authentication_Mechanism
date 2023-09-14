@@ -5,7 +5,7 @@ const connectToMongo = () => {
     .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
       console.log("Connected successfully");
-    }) 
+    })
     .catch((err) => {
       console.log(err);
       process.exit();
