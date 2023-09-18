@@ -5,7 +5,7 @@ const Notes = require("../models/Notes");
 const { body, validationResult } = require("express-validator");
 
 //ROUTE 1: Get all the notes using GET method /api/notes/fetchallnotes   login required
-router.get("/fetchallnotes", fetchUser, async (req, res) => {
+router.get("/fetchblog", fetchUser, async (req, res) => {
   try {
     //fetching user id through "fetchUser" middleware
     const notes = await Notes.find({ user: res.user.id });
@@ -20,7 +20,7 @@ router.get("/fetchallnotes", fetchUser, async (req, res) => {
 
 //ROUTE 2: Add a notes using POST method /api/notes/addnotes   login required
 router.post(
-  "/addnotes",
+  "/addblog",
   fetchUser,
   [
     body("title", "Enter a valid title").isLength({ min: 3 }),
@@ -57,7 +57,7 @@ router.post(
 );
 
 //ROUTE 3: Update an existing note using PUT method /api/notes/updatenotes   login required
-router.put("/updatenotes/:id", fetchUser, async (req, res) => {
+router.put("/updateblog/:id", fetchUser, async (req, res) => {
   //Fetching below elements of an array from the database which was inserted by the valid user
   const { title, description, tag } = req.body;
   try {
@@ -116,7 +116,7 @@ router.put("/updatenotes/:id", fetchUser, async (req, res) => {
 });
 
 //ROUTE 4: Delete an existing note using DELETE method /api/notes/deletenotes   login required
-router.delete("/deletenotes/:id", fetchUser, async (req, res) => {
+router.delete("/deleteblog/:id", fetchUser, async (req, res) => {
   try {
     //------------------------Find the note to be deleted and delete it--------------------------------------
 

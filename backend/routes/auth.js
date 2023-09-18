@@ -151,9 +151,10 @@ router.post(
 // });
 
 router.post("/getAllID", async (req, res) => {
-  console.log("thid id runningd");
+  console.log("this is running");
   const { id } = req.body;
   const UserId = await User.find(id);
+
   res.json(await fetchAllBlogs(req, res, UserId[0].id));
   // for (i = 0; i < UserId.length; i++) {
   //   //  console.log(UserId[i].role);
@@ -168,11 +169,11 @@ router.post("/getAllID", async (req, res) => {
 });
 
 router.post("/getOneID", async (req, res) => {
-  const { id } = req.body;
+  const { id, name } = req.body;
   const single = await User.find(id);
   for (i = 0; i < single.length; i++) {
     res.json(single[i].id);
-    fetchLatestBlogs(single[i].id);
+    fetchLatestBlogs(single[i].id, single[i].name);
     break;
   }
 });

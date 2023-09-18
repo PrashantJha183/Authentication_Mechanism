@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import NoteContext from "./NoteContext";
 const NoteState = (props) => {
-  const host = "http://localhost:5000";
-  const notesInitial = [];
-  const [notes, setNotes] = useState(notesInitial);
+  const host = process.env.REACT_APP_BACKEND_HOST;
+  const blogInitial = [];
+  const [blog, setBlog] = useState(blogInitial);
 
   //For blog posting
-  const addNotes = async (title, description, tag) => {
+  const addBlog = async (title, description, tag) => {
     console.log("Adding a new note");
-    const response = await fetch(`${host}/api/notes/addnotes`, {
+    const response = await fetch(`${host}/api/notes/addblog`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,8 +17,8 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
-    const note = await response.json();
-    setNotes(notes.concat(note));
+    const blogs = await response.json();
+    setBlog(blog.concat(blogs));
   };
 
   // const editNotes = async (id, title, description, tag) => {
@@ -63,7 +63,7 @@ const NoteState = (props) => {
   return (
     <>
       {/* console.log(getNotes()) */}
-      <NoteContext.Provider value={{ notes, addNotes }}>
+      <NoteContext.Provider value={{ blog, addBlog }}>
         {props.children}
       </NoteContext.Provider>
     </>

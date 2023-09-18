@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import ImageSlider from "./ImageSlider";
 import Footer from "./Others/Footer";
-// import Notes from "./BlogShow";
+import Notes from "./BlogShow";
 
 function ToastedMedia() {
   const [scrollPercent, setScrollPercent] = useState(0);
@@ -201,7 +201,9 @@ function ToastedMedia() {
         </div>
       </div>
       <div className="thir">
-        <div className="slider-1">{/* <ImageSlider /> */}</div>
+        <div className="slider-1">
+          <ImageSlider />
+        </div>
       </div>
       {console.log(scrollPercent)}
       <div className={`input ${!localStorage.getItem("token") ? "" : "non"}`}>
@@ -245,9 +247,10 @@ function ToastedMedia() {
               : "opa-1"
           }`}
         ></div>
-        <Link to="/signup" className={`signup ${
-              scrollPercent > 30000 ? "login" : "hidden"
-            }`}>
+        <Link
+          to="/signup"
+          className={`signup ${scrollPercent > 30000 ? "login" : "hidden"}`}
+        >
           Don't have an account?{" "}
         </Link>
         <img
@@ -257,9 +260,9 @@ function ToastedMedia() {
         />
       </div>
 
-      {/* <div className="container">
+      <div className="container">
         <Notes />
-      </div> */}
+      </div>
 
       <Footer />
     </>

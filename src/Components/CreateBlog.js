@@ -5,9 +5,9 @@ import NoteContext from "./Context/NoteContext";
 export default function Blog() {
   const context = useContext(NoteContext);
 
-  const { addNotes } = context;
+  const { addBlog } = context;
 
-  const [notes, setNotes] = useState({
+  const [blog, setBlog] = useState({
     user: "",
     title: "",
     description: "",
@@ -16,12 +16,12 @@ export default function Blog() {
 
   const blogPost = (e) => {
     e.preventDefault();
-    addNotes(notes.title, notes.description, notes.tag);
-    setNotes({ title: "", description: "", tag: "" });
+    addBlog(blog.title, blog.description, blog.tag);
+    setBlog({ title: "", description: "", tag: "" });
   };
 
   const onChange = (e) => {
-    setNotes({ ...notes, [e.target.name]: e.target.value });
+    setBlog({ ...blog, [e.target.name]: e.target.value });
   };
   return (
     <>
@@ -44,7 +44,7 @@ export default function Blog() {
               onChange={onChange}
               required
               minLength={5}
-              value={notes.title}
+              value={blog.title}
             />
           </div>
           <div className="form-group my-4">
@@ -58,7 +58,7 @@ export default function Blog() {
               onChange={onChange}
               required
               minLength={5}
-              value={notes.description}
+              value={blog.description}
               style={{ resize: "none" }}
               placeholder="Enter your blog description"
             ></textarea>
@@ -75,7 +75,7 @@ export default function Blog() {
               onChange={onChange}
               required
               minLength={5}
-              value={notes.tag}
+              value={blog.tag}
             />
           </div>
 
@@ -85,9 +85,9 @@ export default function Blog() {
             style={{ display: "block", margin: "auto" }}
             onClick={blogPost}
             disabled={
-              notes.title.length < 5 ||
-              notes.description.length < 5 ||
-              notes.tag.length < 5
+              blog.title.length < 5 ||
+              blog.description.length < 5 ||
+              blog.tag.length < 5
             }
           >
             Post

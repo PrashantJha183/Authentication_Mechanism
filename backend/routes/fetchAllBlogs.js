@@ -11,6 +11,7 @@ const Notes = require("../models/Notes");
 
 const fetchAllBlogs = async (res, req, id) => {
   console.log(id);
+  // console.log(name);
   const notes = await Notes.find({});
   console.log(notes.length);
 
