@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BlogItem from "./FetchBlog";
 const host = process.env.REACT_APP_BACKEND_HOST;
 
-function Notes() {
+function BlogShow() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -25,24 +25,25 @@ function Notes() {
   }, []);
   return (
     <>
-      <div className="text-center">
+      {/* <div className="text-center">
         <h1>My Blog</h1>
+      </div> */}
+      <div className="row">
+        {data.map((item) => (
+          <div className="col-md-auto" key={item._id}>
+            {/* <div className="col"> */}
+            <BlogItem
+              title={item.title}
+              description={item.description}
+              tag={item.tag}
+              date={item.date}
+            />
+            {/* </div> */}
+          </div>
+        ))}
       </div>
-      {data.map((item) => (
-        <div
-          className="row my-5 d-flex justify-content-center align-items-center"
-          key={item._id}
-        >
-          <BlogItem
-            title={item.title}
-            description={item.description}
-            tag={item.tag}
-            date={item.date}
-          />
-        </div>
-      ))}
     </>
   );
 }
 
-export default Notes;
+export default BlogShow;

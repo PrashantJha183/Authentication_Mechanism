@@ -24,11 +24,9 @@ function Login(props) {
     setCredentials({ email: "", password: "" });
 
     const data = await response.json();
-
     if (response.status === 200) {
       localStorage.setItem("token", data.authToken);
-      localStorage.setItem("roles", data.role);
-
+      localStorage.setItem("roles", data.roleStat);
       navigate("/");
     } else {
       alert("Invalid credentials");

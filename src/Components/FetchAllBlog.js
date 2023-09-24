@@ -1,10 +1,9 @@
 import React from "react";
 
-function BlogItem(props) {
+function FetchAllBlog(props) {
   const { title, description, tag, date } = props;
   return (
     <>
-      {/* <div className="col-md-2"> */}
       <div className="card text-center" style={{ borderColor: "#cfa97d" }}>
         <div
           className="card-body"
@@ -16,9 +15,8 @@ function BlogItem(props) {
           <p className="card-text">{new Date(date).toLocaleString()}</p>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 }
 
-export default BlogItem;
+export default FetchAllBlog;

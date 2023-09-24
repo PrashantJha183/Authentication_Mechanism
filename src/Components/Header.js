@@ -41,6 +41,12 @@ export default function Header() {
     localStorage.removeItem("token");
     navigate("/");
   };
+  const down = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      // behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -91,19 +97,28 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link
-              className={`${
-                scrollPercent > 9000 && scrollPercent < 19000
-                  ? "optiondark"
-                  : scrollPercent < 31000
-                  ? "optionlight"
-                  : "optiondark"
-              }`}
-              id="option3"
-              to="/blog"
-            >
-              Blog
-            </Link>
+            {console.log(localStorage.getItem("roles"))}
+            {localStorage.getItem("token") ? (
+              localStorage.getItem("roleStat") !== "user" ? (
+                <Link
+                  className={`${
+                    scrollPercent > 9000 && scrollPercent < 19000
+                      ? "optiondark"
+                      : scrollPercent < 31000
+                      ? "optionlight"
+                      : "optiondark"
+                  }`}
+                  id="option3"
+                  to="/blog"
+                >
+                  Blog
+                </Link>
+              ) : (
+                alert("You can't upload blog")
+              )
+            ) : (
+              ""
+            )}
           </li>
           <li>
             <Link
@@ -147,6 +162,7 @@ export default function Header() {
                 }`}
                 id="option6"
                 to="/"
+                onClick={down}
               >
                 Login
               </Link>

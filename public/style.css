@@ -134,6 +134,34 @@ header ul li .optiondark {
   opacity: calc(100% - 5% * var(--val1)); */
 }
 
+.text-blog{
+  position: fixed;
+  top: -5%;
+  left: 0%;
+  width: 65%;
+  color: #cfa97d;
+  font-weight: 900;
+  font-size: 100px;
+  margin-top: 10%;
+  padding-left: 9%;
+}
+.subtext-blog{
+  position: fixed;
+  top: 25%;
+  left: 0%;
+  width: 65%;
+  color: aliceblue;
+  font-weight: 400;
+  font-size: 40px;
+  margin-top: 10%;
+  padding-left: 9%;
+}
+.blog{
+  position: fixed;
+  top: 55%;
+  left: 10%;
+}
+
 .profiles {
   position: fixed;
   align-items: center;

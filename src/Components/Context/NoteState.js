@@ -12,8 +12,8 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMDIzNTYxMzIyMTRmNjdjODJlMTc1In0sImlhdCI6MTY5NDU0ODYzNX0.f2vkZ4inVvMm3Xt-xvHq4z40owxEecbeZP6xNrgDqS4",
+        "auth-token": localStorage.getItem("token"),
+        "login-role": localStorage.getItem("roleStat"),
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -42,27 +42,8 @@ const NoteState = (props) => {
   //   }
   // };
 
-  //for fetching blog
-  // const fetchBlogs = async () => {
-  //   const response = await fetch(`${host}/api/auth/getAllID`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       // "auth-token":
-  //       //   "0",
-  //     },
-  //   });
-
-  //   // console.log(response);
-  //   const data = await response.json();
-  //   // console.log(data);
-  //   setNotes(data);
-  // };
-  // console.log(fetchBlogs());
-
   return (
     <>
-      {/* console.log(getNotes()) */}
       <NoteContext.Provider value={{ blog, addBlog }}>
         {props.children}
       </NoteContext.Provider>

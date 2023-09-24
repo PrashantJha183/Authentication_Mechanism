@@ -1,26 +1,15 @@
 const express = require("express");
 const Notes = require("../models/Notes");
-// const ID = require("./auth");
 
-// const fetchId = async (id) => {
-//   const notes = await Notes.find({ user: id });
-//   console.log(notes);
-// };
-
-// module.exports = fetchId;
-
-const fetchAllBlogs = async (res, req, id) => {
+const fetchAllBlogs = async (res, req, id, name) => {
   console.log(id);
-  // console.log(name);
+  console.log("names", name);
   const notes = await Notes.find({});
-  console.log(notes.length);
+  console.log("Blog length", notes.length);
 
   req.json({ notes });
-  // console.log("hello");
 
-  // req.json({ notes });
-
-  console.log("Array ended");
+  console.log("Array ended here");
 };
 
 module.exports = fetchAllBlogs;

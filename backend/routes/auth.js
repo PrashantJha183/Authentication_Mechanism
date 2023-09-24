@@ -7,8 +7,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fetchUser = require("../middleware/fetchUser");
 const sign = `${process.env.JWT_SECRET}`;
-const fetchAllBlogs = require("./fetchAllBlogs");
+const fetchBlogs = require("./fetchBlogs");
 const fetchLatestBlogs = require("./fetchLatestBlogs");
+const fetchAllBlogs = require("./fetchAllBlogs");
 
 //ROUTE 1: Create a user using POST method /api/auth/createuser   No login required
 router.post(
@@ -117,8 +118,8 @@ router.post(
           role: user.role,
         },
       };
-      console.log(role);
-
+      const roleStat = role.user.role;
+      console.log(typeof(roleStat))
       // let userId = await User.findById().pretty(id);
       // console.log(userId);
       // const UserId = await User.findById(user._id);
@@ -126,7 +127,7 @@ router.post(
 
       //Using JWTToken sign
 
-      res.json({ success, authToken, role, dataid });
+      res.json({ success, authToken, roleStat, dataid });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Some error occured");
@@ -155,7 +156,7 @@ router.post("/getAllID", async (req, res) => {
   const { id } = req.body;
   const UserId = await User.find(id);
 
-  res.json(await fetchAllBlogs(req, res, UserId[0].id));
+  res.json(await fetchBlogs(req, res, UserId[0].id));
   // for (i = 0; i < UserId.length; i++) {
   //   //  console.log(UserId[i].role);
 
@@ -176,6 +177,17 @@ router.post("/getOneID", async (req, res) => {
     fetchLatestBlogs(single[i].id, single[i].name);
     break;
   }
+});
+
+router.post("/getAllBlogs", async (req, res) => {
+  console.log("this is running");
+  const { id, name } = req.body;
+  const UserId = await User.find(id);
+
+  // console.log("name", UserId.name);
+  // for (i = 0; i < UserId.length; i++) {
+  res.json(await fetchAllBlogs(req, res, UserId[0].id));
+  // }
 });
 
 module.exports = router;

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
-import ImageSlider from "./ImageSlider";
+// import ImageSlider from "./ImageSlider";
 import Footer from "./Others/Footer";
-import Notes from "./BlogShow";
+import BlogShow from "./BlogShow";
+// import AllBlogs from "./AllBlogs";
 
 function ToastedMedia() {
   const [scrollPercent, setScrollPercent] = useState(0);
@@ -75,6 +76,13 @@ function ToastedMedia() {
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
+  const down = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       <Header />
@@ -91,7 +99,7 @@ function ToastedMedia() {
             : "page-1"
         }`}
         src="Toast.png"
-        alt="no image"
+        alt="noImage"
       />
       <div className="Landing-1">
         <div className="text-content">
@@ -190,20 +198,49 @@ function ToastedMedia() {
             className="mini hidden"
             id="Dev"
             src="Development.png"
-            alt="no Image found"
+            alt="noImagefound"
           />
           <img
             className="mini hidden"
             id="Mark"
             src="Marketing.png"
-            alt="no Image "
+            alt="noImagethere "
           />
         </div>
       </div>
       <div className="thir">
-        <div className="slider-1">
-          <ImageSlider />
+        <div
+          className={`text-blog  ${
+            (scrollPercent > 19990) & (scrollPercent < 25000)
+              ? "namein"
+              : "nameout"
+          }`}
+        >
+          See whats going on with us..!
         </div>
+        <div
+          className={`subtext-blog  ${
+            (scrollPercent > 19990) & (scrollPercent < 25000)
+              ? "namein"
+              : "nameout"
+          }`}
+        >
+          To see all of our blogs <Link onClick={down}>click here</Link> to log
+          in....
+        </div>
+        <div
+          className={`blog ${
+            (scrollPercent > 19990) & (scrollPercent < 22500)
+              ? "namein"
+              : "nameout"
+          }`}
+        >
+          <BlogShow />
+        </div>
+
+        {/* <div className="slider-1">
+          <ImageSlider />
+        </div> */}
       </div>
       {console.log(scrollPercent)}
       <div className={`input ${!localStorage.getItem("token") ? "" : "non"}`}>
@@ -228,6 +265,7 @@ function ToastedMedia() {
             name="password"
             onChange={onChange}
           />
+
           <img
             src="Toaster.png"
             className={`image-login ${
@@ -235,6 +273,7 @@ function ToastedMedia() {
             }`}
             onChange={onChange}
             onClick={submit}
+            alt="TherewasnoImage"
           />
         </form>
 
@@ -259,11 +298,9 @@ function ToastedMedia() {
           alt=""
         />
       </div>
-
-      <div className="container">
-        <Notes />
-      </div>
-
+      {/* <div className="container">
+        <AllBlogs />
+      </div> */}
       <Footer />
     </>
   );

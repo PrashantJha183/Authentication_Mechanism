@@ -63,7 +63,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ToastedMedia from "./Components/Script";
 import NoteState from "./Components/Context/NoteState";
 import Blog from "./Components/CreateBlog";
-import Login from "./Components/Login";
+// import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
@@ -95,9 +95,7 @@ const App = () => {
           </Routes>
 
           <Routes>
-            <Route path="/contact" element={<Contact />}>
-              Contact
-            </Route>
+            <Route path="/contact" element={<Contact />}></Route>
           </Routes>
 
           <Routes>
