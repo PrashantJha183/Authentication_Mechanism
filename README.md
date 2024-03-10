@@ -37,7 +37,7 @@ technology, Express.js, Node.js and MongoDB as a backend technology.</p>
 <ol>
  <li>To run the project, you'll need to have Node.js installed on your machine. </li> 
  <li>Download Project Source Code from here.</li>
-  <li>To execute the code, run the command npm run start in the terminal.</li>
+  <li>To execute the code, run the command npm run both in the terminal.</li>
 
 </ol>
 
