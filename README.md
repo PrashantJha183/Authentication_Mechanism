@@ -1,4 +1,4 @@
-<h1 style="font-size: 40px;">Proart Studios</h1>
+<h1 style="font-size: 40px;">Toasted Media</h1>
 <p>
 Toasted Media stands as a groundbreaking website that seamlessly unites the power of digital 
 marketing with the artistry of professional photoshoots, offering an innovative platform for 
